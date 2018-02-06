@@ -11,4 +11,6 @@
 
 5, The terminal will show you the answer.
 
-## Author: Jiabei Han Email: jh4873@nyu.edu
+Author: Jiabei Han
+
+Email: jh4873@nyu.edu
