@@ -1,4 +1,5 @@
-# TwoLinkPasser
+# Two-Linker-Pass
+
 ## How to run this program?
 
 1, Before compiling please have all the input files in the same directory as the program Linker.java that will be tested.
