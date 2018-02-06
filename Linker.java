@@ -5,8 +5,8 @@ public class Linker {
 	static HashMap<String, Integer> checkTable = new HashMap<String, Integer>();// check whether all the defined symbols are used
 	static ArrayList<Integer> modBaseAdd = new ArrayList<Integer>();//stores the base address of each module
 	static ArrayList<ArrayList<String>> useList = new ArrayList<ArrayList<String>>();//2d array, containing all the useLists
-	static ArrayList<ArrayList<String>> defList = new ArrayList<ArrayList<String>>();
-	static ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
+	static ArrayList<ArrayList<String>> defList = new ArrayList<ArrayList<String>>();//2d array, containing all the defLists
+	static ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();// 2d array, containing all the instructions
 	static int mod_count = 0;
 	static int add_offset;
 	static int totalAdd;
