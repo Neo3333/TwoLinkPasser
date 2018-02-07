@@ -1,12 +1,12 @@
 import java.io.*;
 import java.util.*;
 public class Linker {
-	static HashMap<String, Integer> symTable = new HashMap<String, Integer>();//symbol table
-	static HashMap<String, Integer> checkTable = new HashMap<String, Integer>();// check whether all the defined symbols are used
+	static HashMap<String, Integer> symTable = new HashMap<String, Integer>();// symbol table
+	static HashMap<String, Integer> checkTable = new HashMap<String, Integer>();
 	static ArrayList<Integer> modBaseAdd = new ArrayList<Integer>();//stores the base address of each module
-	static ArrayList<ArrayList<String>> useList = new ArrayList<ArrayList<String>>();//2d array, containing all the useLists
-	static ArrayList<ArrayList<String>> defList = new ArrayList<ArrayList<String>>();//2d array, containing all the defLists
-	static ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();// 2d array, containing all the instructions
+	static ArrayList<ArrayList<String>> useList = new ArrayList<ArrayList<String>>();
+	static ArrayList<ArrayList<String>> defList = new ArrayList<ArrayList<String>>();
+	static ArrayList<ArrayList<String>> instructions = new ArrayList<ArrayList<String>>();
 	static int mod_count = 0;
 	static int add_offset;
 	static int totalAdd;
@@ -28,12 +28,19 @@ public class Linker {
 		int lineNum = 0;
 		int addOffset = 0;
 		String[] words = null;
+		String currentLine = null;
+		String currentLine_check = null;
 		ArrayList<String> wordList = new ArrayList<String>();
 		while (input.hasNext()){
+			currentLine_check = input.nextLine();
+			while (currentLine_check.length() == 0){
+				currentLine_check = input.nextLine();
+			}
+			currentLine = currentLine_check;
+			words = currentLine.split("\\s+");
 			ArrayList<String> useList1 = new ArrayList<String>();
 			ArrayList<String> defList1 = new ArrayList<String>();
 			ArrayList<String> instList1 = new ArrayList<String>();
-			String currentLine = input.nextLine();
 			words = currentLine.split("\\s+");
 			for (int i = 0; i < words.length; i++){
 				if (!"".equals(words[i])){
@@ -80,7 +87,6 @@ public class Linker {
 			wordList.clear();
 			totalAdd = addOffset - 1;
 		}
-
 	}
 	public static void secondpass(){
 		ArrayList<String> useList1 = new ArrayList<String>();
@@ -125,7 +131,7 @@ public class Linker {
 					}else{
 						int temp = result - check;
 						System.out.print("\t" + "\t"+ "\t" + temp + "\n");
-						System.out.println("Error: the relative address exceeds total address");
+						System.out.println("Error: the relative address exceeds total address, initialize as zero");
 					}
 					break;
 				case "I":
@@ -156,7 +162,7 @@ public class Linker {
 					}
 						break;
 				case "A":
-					int temp = temp2 % 10 + temp2 % 100;
+					int temp = temp2 % 1000;
 					if (temp > totalAdd){
 						temp3 = temp2 - temp;
 						System.out.print("\t" + "\t" + "\t" + temp3 + "\n");
@@ -178,8 +184,8 @@ public class Linker {
 		}
 		System.out.println();
 		for (String k : checkTable.keySet()){
-			if (checkTable.get(k) > 0) System.out.println("Error: the symbol " + k + " is defined"
-					+ "but not used");
+			if (checkTable.get(k) > 0) System.out.println("Warning: the symbol " + k + " is defined"
+					+ " but not used");
 		}
 	}
 	public static void main(String args[]){
