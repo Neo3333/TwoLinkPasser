@@ -2,11 +2,11 @@
 
 ## How to run this program?
 
-1, Before compiling please have all the input files in the same directory as the program Linker.java that will be tested.
+1, Please have all the input files in the same directory as the program Linker.java that will be tested.
 
-2, Compile the program by typing “javac Linker.java”.
+2, Please change to the directory where Linker.java is currently at.
 
-3, Run with “java Linker”
+3, Please compile the program by typing "javac Linker.java". After successfully complile Linker.java, type "java Linker" to run.
 
 4, The program will ask you for the name of the input file, type the name of the input file which is in the current directory.
 
